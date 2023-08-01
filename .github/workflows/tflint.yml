@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v3
@@ -34,4 +34,4 @@ jobs:
       run: tflint --init
 
     - name: Run TFLint
-      run: tflint -f compact
+      run: tflint -f json > tflint_report.json

@@ -24,9 +24,4 @@ jobs:
       - name: Lint Terraform files
         run: |
           tflint -f json > tflint_report.json       
-          git config --global user.email "docdoom12345@outlook.com"
-        
-          git config --global user.name "docdoom12345"
-          git add .
-          git commit -am "TFLint report"
-          git push origin main
+          cat tflint_report.json

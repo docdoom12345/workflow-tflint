@@ -1,1 +1,1 @@
-{"issues":[],"errors":[]}
+{"issues":[{"rule":{"name":"terraform_unused_declarations","severity":"warning","link":"https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.2.2/docs/rules/terraform_unused_declarations.md"},"message":"local.a is declared but not used","range":{"filename":"main.tf","start":{"line":2,"column":3},"end":{"line":2,"column":9}},"callers":[]}],"errors":[]}

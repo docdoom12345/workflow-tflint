@@ -1,0 +1,19 @@
+name: This workflow performs tflint
+run-name: tflint
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  display_files:
+    name: job for tflint
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+        
+      - name: perform tflint
+        run: |
+          docker run --rm -v $(pwd):/data -t ghcr.io/terraform-linters/tflint
+        shell: bash

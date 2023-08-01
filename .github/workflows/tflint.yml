@@ -23,5 +23,5 @@ jobs:
         run: tflint --init
       - name: Lint Terraform files
         run: |
-          tflint --error-with-issues > tflint_report.json       
+          tflint > tflint_report.json       
           cat tflint_report.json

@@ -1,19 +1,32 @@
-name: This workflow performs tflint
-run-name: tflint
+name: tflint-serverless
 
 on:
   push:
     branches:
+      # TODO: replace this if you are not using 'main' as your target
+      # branch for pull requests.
       - main
+permissions:
+  pull-requests: write
+  contents: write
+  repository-projects: write    
 jobs:
-  display_files:
-    name: job for tflint
+  tflint-serverless:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v2
-        
-      - name: perform tflint
+      - uses: actions/checkout@v2
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v1
+        with:
+          tflint_version: v0.29.0
+      - name: Install Terraform plugins
+        run: tflint --init
+      - name: Lint Terraform files
         run: |
-          docker run --rm -v $(pwd):/data -t ghcr.io/terraform-linters/tflint
-        shell: bash
+          tflint -f json > tflint_report.json       
+          git config --global user.email "docdoom12345@outlook.com"
+        
+          git config --global user.name "docdoom12345"
+          git add .
+          git commit -am "TFLint report"
+          git push origin main

@@ -1,6 +1,6 @@
-/*locals {
+locals {
   a = 40
-}*/
+}
 terraform {
   required_providers {
     azurerm = {

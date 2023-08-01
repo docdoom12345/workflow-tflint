@@ -2,8 +2,12 @@ name: Lint
 on:
   push:
     branches: [ main ]
-  pull_request:
 
+permissions:
+  pull-requests: write
+  contents: write
+  repository-projects: write
+  
 jobs:
   tflint:
     runs-on: ${{ matrix.os }}
@@ -36,4 +40,8 @@ jobs:
     - name: Run TFLint
       run: | 
         tflint --force -f json > tflint_report.json
-        cat tflint_report.json 
+          git config --global user.email "docdoom12345"
+          git config --global user.name "docdoom12345"
+          git add .
+          git commit -am "TFLint report"
+          git push origin main

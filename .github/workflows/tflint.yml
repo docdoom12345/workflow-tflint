@@ -34,4 +34,6 @@ jobs:
       run: tflint --init
 
     - name: Run TFLint
-      run: tflint -f json > tflint_report.json
+      run: | 
+        tflint --force -f json > tflint_report.json
+        cat tflint_report.json 
